@@ -1,5 +1,6 @@
 import{readdirSync as R,readFileSync as F,writeFileSync as W,mkdirSync as K}from'fs'
-for(const d of R('/input')){let f=`/input/${d}/`,p=F(f+'program.bin'),q=F(f+'input.bin'),n=p.length,D=new Int32Array(257),M=new Int32Array(256),C=[],o=Buffer.alloc(65536),s=0,l=0,i=0,c=0,x=0,e=0,a,b,v,y,t
+const E=process.env,I=E.MAKEFUN_INPUT_DIR||'/input',O=E.MAKEFUN_OUTPUT_DIR||'/output'
+for(const d of R(I)){let f=`${I}/${d}/`,p=F(f+'program.bin'),q=F(f+'input.bin'),n=p.length,D=new Int32Array(257),M=new Int32Array(256),C=[],o=Buffer.alloc(65536),s=0,l=0,i=0,c=0,x=0,e=0,a,b,v,y,t
 r:for(;;){if(c++==1e6){e=10;break}if(x<0||x>=n){e=9;break}v="2Cs57:;>        999999969996999 999             RUUR2           68              5535".charCodeAt(t=p[x])-48
 if(!(v>=0)){e=5;break}y=x-~(v>>4);if(y>n){e=9;break}if(s<(v>>2&3)){e=2;break}if(s+(v&3)>258){e=3;break}x=y
 if(v==9){b=D[--s];a=D[s-1];if(t>18&&t<23&&!b){e=4;break}D[s-1]=[a+b,a-b,Math.imul(a,b),a/b,a%b,(a>>>0)/(b>>>0),(a>>>0)%(b>>>0),,a&b,a|b,a^b,,a<<b,a>>b,a>>>b,,a==b,a<b,a>>>0<b>>>0][t-16];continue}
@@ -22,4 +23,4 @@ case 80:a=''+D[s-1];if(l+a.length>65536){e=11;break r}l+=o.write(a,l);s--;break
 case 81:if(l>65535){e=11;break r}o[l++]=D[--s];break
 case 82:D[s++]=i<q.length?q[i++]:-1;break
 case 83:e=D[--s]&255;break r}}
-K(f='/output/'+d,{recursive:true});W(f+'/stdout.bin',o.subarray(0,l));W(f+'/exit.txt',''+e)}
+K(f=O+'/'+d,{recursive:true});W(f+'/stdout.bin',o.subarray(0,l));W(f+'/exit.txt',''+e)}
